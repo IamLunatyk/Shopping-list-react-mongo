@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
 
 // Create a new MongoClient
 const connectionParams = {
@@ -10,10 +11,7 @@ const connectionParams = {
 const connectDB = async () => {
   try {
     const con = await mongoose
-      .connect(
-        "mongodb+srv://selectmydeal1:riko1234@cluster0.jubuapk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-        connectionParams
-      )
+      .connect(process.env.DATABASE_URI, connectionParams)
       .then(() => {
         console.log("Connected to the database ");
       })
